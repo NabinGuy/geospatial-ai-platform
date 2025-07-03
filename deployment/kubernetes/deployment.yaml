@@ -1,0 +1,25 @@
+# deployment/kubernetes/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: geospatial-platform
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: geospatial-platform
+  template:
+    metadata:
+      labels:
+        app: geospatial-platform
+    spec:
+      containers:
+      - name: web
+        image: geospatial-platform:latest
+        ports:
+        - containerPort: 8000
+        env:
+        - name: DATABASE_URL
+          value: "postgresql://user:pass@postgres-service:5432/geospatial_db"
+        - name: REDIS_URL
+          value: "redis://redis-service:6379"

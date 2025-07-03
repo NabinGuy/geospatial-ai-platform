@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Geospatial Analysis Platform</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-globe"></i> AI-Powered Geospatial Analysis Platform</h1>
+            <p>Intelligent geoprocessing with natural language queries</p>
+        </header>
+
+        <div class="main-content">
+            <div class="sidebar">
+                <div class="card">
+                    <h3><i class="fas fa-cloud-upload-alt"></i> Upload Data</h3>
+                    <div class="upload-section">
+                        <input type="file" id="file-input" accept=".shp,.geojson,.json,.tif,.tiff" multiple>
+                        <button id="upload-btn" class="btn-primary">Upload Files</button>
+                    </div>
+                    <div id="upload-status"></div>
+                </div>
+
+                <div class="card">
+                    <h3><i class="fas fa-database"></i> Available Data</h3>
+                    <div id="data-list"></div>
+                </div>
+
+                <div class="card">
+                    <h3><i class="fas fa-history"></i> Recent Jobs</h3>
+                    <div id="jobs-list"></div>
+                </div>
+            </div>
+
+            <div class="main-panel">
+                <div class="query-section">
+                    <h3><i class="fas fa-magic"></i> Natural Language Query</h3>
+                    <div class="query-input">
+                        <textarea id="query-input" placeholder="Enter your geospatial analysis request in natural language...
+Examples:
+- Create a 1km buffer around all cities
+- Find all roads within 500m of schools
+- Calculate the area of each polygon
+- Identify overlapping regions between two layers"></textarea>
+                        <button id="submit-query" class="btn-primary">
+                            <i class="fas fa-play"></i> Analyze
+                        </button>
+                    </div>
+                </div>
+
+                <div class="results-section">
+                    <div class="tabs">
+                        <button class="tab-button active" onclick="showTab('results')">
+                            <i class="fas fa-chart-bar"></i> Results
+                        </button>
+                        <button class="tab-button" onclick="showTab('plan')">
+                            <i class="fas fa-list"></i> Plan
+                        </button>
+                        <button class="tab-button" onclick="showTab('code')">
+                            <i class="fas fa-code"></i> Code
+                        </button>
+                        <button class="tab-button" onclick="showTab('map')">
+                            <i class="fas fa-map"></i> Map
+                        </button>
+                    </div>
+
+                    <div id="results-tab" class="tab-content active">
+                        <div id="results-container">
+                            <div class="empty-state">
+                                <i class="fas fa-search"></i>
+                                <p>Submit a query to see results</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="plan-tab" class="tab-content">
+                        <div id="plan-container">
+                            <div class="empty-state">
+                                <i class="fas fa-list"></i>
+                                <p>Analysis plan will appear here</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="code-tab" class="tab-content">
+                        <div id="code-container">
+                            <div class="empty-state">
+                                <i class="fas fa-code"></i>
+                                <p>Generated code will appear here</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="map-tab" class="tab-content">
+                        <div id="map-container">
+                            <div id="map"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="loading-overlay" class="loading-overlay hidden">
+            <div class="loading-spinner">
+                <div class="spinner"></div>
+                <p>Processing your request...</p>
+                <div id="loading-status"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
